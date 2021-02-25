@@ -41,6 +41,7 @@ export default function Quiz() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.quizs);
   const responseData = useSelector((state) => state.quizResponse);
+  const user = useSelector((state) => state.user);
 
   const handleChange = (value, id) => (e) => {
     let tempArr = [...responseData];
@@ -83,6 +84,7 @@ export default function Quiz() {
           paddingRight: 20,
         }}
       >
+      <Typography variant="h5">Hi, { user ? user.name : 'user'} 🥳</Typography>
         {data.map((ele, index) => (
           <div key={index} style={{
             width:"100%"

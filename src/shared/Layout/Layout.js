@@ -166,7 +166,7 @@ const Layout = () => {
             &nbsp;&nbsp;
             {data.length ? (
               <NavLink
-                to="/quiz"
+                to="/start-quiz"
                 className={classes.link}
                 activeClassName={classes.active}
               >
@@ -230,7 +230,7 @@ const Layout = () => {
               </ListItemIcon>
 
               <NavLink
-                to="/quiz"
+                to="/start-quiz"
                 className={classes.activeNav}
                 activeClassName={classes.navlink}
               >

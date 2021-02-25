@@ -4,10 +4,16 @@ const initialState = {
   quizs: [],
   quizResponse: [],
   quiz: null,
+  user:null
 };
 
 const quizReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SET_USERNAME:
+      return {
+        ...state,
+        user:action.payload
+      }
     case actionTypes.CREATE_QUIZ:
       return {
         ...state,

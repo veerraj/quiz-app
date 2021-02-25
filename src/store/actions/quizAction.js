@@ -24,3 +24,8 @@ export const setResponse = (payload) => ({
      type:actionTypes.SET_QUIZ,
      payload
 })
+
+export const setUsername = (payload) => ({
+    type:actionTypes.SET_USERNAME,
+    payload
+})
