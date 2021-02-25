@@ -12,8 +12,8 @@ const useStyles = makeStyles({
 
 export default function Result() {
   const classes = useStyles();
-  const data = useSelector((state) => state.quizs);
-  const responseData = useSelector((state) => state.quizResponse);
+  const data = useSelector((state) => state.quiz.quizs);
+  const responseData = useSelector((state) => state.quiz.quizResponse);
   const [result, setResult] = useState(0);
 
   useEffect(() => {

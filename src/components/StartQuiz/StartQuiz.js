@@ -36,7 +36,7 @@ export default function StartQuiz() {
   const classes = useStyles();
   const [username,setUserName] = useState("");
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.quiz.user);
 
 
   useEffect(() => {

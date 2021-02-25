@@ -42,7 +42,7 @@ export default function QuizForm() {
   const [answer, setAnswer] = useState(0);
   const [updateId,setUpdateId] = useState(null);
   const dispatch = useDispatch();
-  const quizData = useSelector((state) => state.quizs);
+  const quizData = useSelector((state) => state.quiz.quizs);
   const optionValue = [
     { name: "Option A" },
     { name: "Option B" },

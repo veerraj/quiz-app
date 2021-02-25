@@ -39,9 +39,9 @@ const useStyles = makeStyles({
 export default function Quiz() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.quizs);
-  const responseData = useSelector((state) => state.quizResponse);
-  const user = useSelector((state) => state.user);
+  const data = useSelector((state) => state.quiz.quizs);
+  const responseData = useSelector((state) => state.quiz.quizResponse);
+  const user = useSelector((state) => state.quiz.user);
 
   const handleChange = (value, id) => (e) => {
     let tempArr = [...responseData];

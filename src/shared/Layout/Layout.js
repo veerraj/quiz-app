@@ -20,6 +20,7 @@ import Grid from "@material-ui/core/Grid";
 import HomeIcon from "@material-ui/icons/Home";
 import QuizIcon from "@material-ui/icons/ContactSupport";
 import FormIcon from "@material-ui/icons/ListAlt";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Hidden } from "@material-ui/core";
@@ -105,7 +106,8 @@ const Layout = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const data = useSelector((state) => state.quizs);
+  const data = useSelector((state) => state.quiz.quizs);
+  const token = useSelector((state) => state.auth.token);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -147,32 +149,48 @@ const Layout = () => {
           </Typography>
           <Hidden xsDown>
             {/* <Grid container spacing={2} justify="flex-end"> */}
-            <NavLink
-              to="/"
-              exact
-              className={classes.link}
-              activeClassName={classes.active}
-            >
-              Home
-            </NavLink>
-            &nbsp;&nbsp;
-            <NavLink
-              to="/create-quiz"
-              className={classes.link}
-              activeClassName={classes.active}
-            >
-              Create
-            </NavLink>
-            &nbsp;&nbsp;
-            {data.length ? (
+            {!token && (
               <NavLink
-                to="/start-quiz"
+                to="/"
+                exact
                 className={classes.link}
                 activeClassName={classes.active}
               >
-                Quiz
+                Login
               </NavLink>
-            ) : null}
+            )}
+            &nbsp;&nbsp;
+            {token && (
+              <NavLink
+                to="/create-quiz"
+                className={classes.link}
+                activeClassName={classes.active}
+              >
+                Create
+              </NavLink>
+            )}
+            &nbsp;&nbsp;
+            {data.length
+              ? token && (
+                  <NavLink
+                    to="/start-quiz"
+                    className={classes.link}
+                    activeClassName={classes.active}
+                  >
+                    Quiz
+                  </NavLink>
+                )
+              : null}
+            &nbsp;&nbsp;
+            {token && (
+              <NavLink
+                to="/logout"
+                className={classes.link}
+                activeClassName={classes.active}
+              >
+                Logout
+              </NavLink>
+            )}
             &nbsp;&nbsp;
             {/* </Grid> */}
           </Hidden>
@@ -198,7 +216,7 @@ const Layout = () => {
         </div>
         <Divider />
         <List>
-          <ListItem button>
+        { !token &&   <ListItem button>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
@@ -208,10 +226,23 @@ const Layout = () => {
               className={classes.activeNav}
               activeClassName={classes.navlink}
             >
+              <ListItemText primary={"Login"} />
+            </NavLink>
+          </ListItem> }
+        { token &&   <ListItem button>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <NavLink
+              to="/home"
+              exact
+              className={classes.activeNav}
+              activeClassName={classes.navlink}
+            >
               <ListItemText primary={"Home"} />
             </NavLink>
-          </ListItem>
-          <ListItem button>
+          </ListItem> }
+          { token && <ListItem button>
             <ListItemIcon>
               <FormIcon />
             </ListItemIcon>
@@ -222,9 +253,9 @@ const Layout = () => {
             >
               <ListItemText primary={"Create"} />
             </NavLink>
-          </ListItem>
+          </ListItem> }
           {data.length ? (
-            <ListItem button>
+            token && <ListItem button>
               <ListItemIcon>
                 <QuizIcon />
               </ListItemIcon>
@@ -238,6 +269,18 @@ const Layout = () => {
               </NavLink>
             </ListItem>
           ) : null}
+          { token && <ListItem button>
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <NavLink
+              to="/logout"
+              className={classes.activeNav}
+              activeClassName={classes.navlink}
+            >
+              <ListItemText primary={"Logout"} />
+            </NavLink>
+          </ListItem> }
         </List>
         <Divider />
       </Drawer>
