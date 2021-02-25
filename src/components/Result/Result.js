@@ -14,6 +14,7 @@ export default function Result() {
   const classes = useStyles();
   const data = useSelector((state) => state.quiz.quizs);
   const responseData = useSelector((state) => state.quiz.quizResponse);
+  const user = useSelector((state) => state.quiz.user);
   const [result, setResult] = useState(0);
 
   useEffect(() => {
@@ -49,7 +50,7 @@ export default function Result() {
       </Grid>
       <Grid item>
         <Typography variant="h5">
-          Hi Rajveer your score is {result}/{data.length}
+          Hi { user ? user.name : 'rajveer'} your score is {result}/{data.length}
         </Typography>
       </Grid>
     </Grid>
