@@ -50,7 +50,10 @@ export default function Result() {
       </Grid>
       <Grid item>
         <Typography variant="h5">
-          Hi { user ? user.name : 'rajveer'} your score is {result}/{data.length}
+          Hi!, { user ? user.name : 'rajveer'} your score is {result}/{data.length}
+        </Typography>
+        <Typography variant="h5" style={{textAlign:"center"}}>
+              { result/data.length != 1 ? `😕`:`😇`}
         </Typography>
       </Grid>
     </Grid>
